@@ -77,7 +77,7 @@ public class Main {
 
         // Write to contacts.txt
         Files.writeString(contactsPath, formattedContact, StandardOpenOption.APPEND);
-        System.out.println("** CONTACT ADDED **");
+        System.out.println("CONTACT ADDED");
         System.out.println("------------------");
 
         // TODO: Add functionality to check for duplicate contact
@@ -92,32 +92,45 @@ public class Main {
         String searchQuery = getString();
         boolean exists = false;
 
-        // Read contacts.txt and put in temporary contact list
         // TODO: This does not let me search for contacts added in the same session!
+        //  ------ SOLVED ---> moved if(!exists) outside of forEach loop.
+        // Read contacts.txt and put in temporary contact list
         List<String> contactList = Files.readAllLines(contactsPath);
 
-        // Loop through each element (lines of text) of contactList
+        // Loop through each element (line of text) of contactList
         for (String contact : contactList) {
             // Normalize the searchQuery and entries in contact list
             // Note: wasn't working until I added extra parenthesis
+            // contains() is looking for the occurrence of a char string
             if ((contact.toLowerCase()).contains((searchQuery.toLowerCase()))) {
                 System.out.println(contact);
+                System.out.println("------------------");
                 exists = true;
             }
-            if (!exists) {
-                System.out.println("** CONTACT NOT FOUND **");
-                System.out.println("------------------");
-                break;
-            }
         }
-
+        if (!exists) {
+            System.out.println("CONTACT NOT FOUND");
+            System.out.println("------------------");
+        }
         // Displays menu
         menu();
     }
 
     // TODO DELETE CONTACT *************************************
     public static void deleteContact() throws IOException {
+        System.out.println("Enter Last Name of contact to delete: ");
+        String toDelete = getString();
 
+        // Read contacts.txt and put in temporary contact list
+        List<String> contactList = Files.readAllLines(contactsPath);
+        for(String contact : contactList) {
+            if (!contact.contains(toDelete)) {
+                // loop thru contactList, add everything to a new list (except toDelete) and return newList
+
+
+
+            }
+        }
         menu();
     }
 
