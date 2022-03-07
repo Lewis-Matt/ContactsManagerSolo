@@ -1,11 +1,17 @@
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 
 import static util.Input.getInt;
 
 public class Main {
-
+    // Path to contacts.txt
+    static Path contactsPath = Paths.get("data", "contacts.txt");
     // TODO SHOW MENU TO USER *************************************
     public static void menu() throws IOException {
+        // Menu options
         System.out.println("1. View contacts.\n" +
                 "2. Add a new contact.\n" +
                 "3. Search a contact by name.\n" +
@@ -15,7 +21,6 @@ public class Main {
 
         // Store user choice
         int selectedOption = getInt(1, 5);
-
         // Cases 1 - 5
         switch (selectedOption) {
             case 1:
@@ -38,22 +43,29 @@ public class Main {
 
     // TODO VIEW CONTACTS *************************************
     public static void viewContacts() throws IOException {
+        // Read contacts.txt and put in temporary contact list
+        List<String> contactList = Files.readAllLines(contactsPath);
 
+
+        menu();
     }
 
     // TODO ADD CONTACT *************************************
     public static void addContact() throws IOException {
 
+        menu();
     }
 
     // TODO SEARCH CONTACTS *************************************
     public static void searchContacts() throws IOException {
 
+        menu();
     }
 
     // TODO DELETE CONTACT *************************************
     public static void deleteContact() throws IOException {
 
+        menu();
     }
 
     // TODO ******************* MAIN **************************
