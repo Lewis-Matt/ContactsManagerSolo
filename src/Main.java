@@ -5,7 +5,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.List;
-
 import static java.nio.file.Files.write;
 import static util.Input.*;
 
@@ -72,11 +71,12 @@ public class Main {
         Contact newContact = new Contact(firstName, lastName, phoneNumber);
         // Format newContact
         String formattedContact = newContact.getFirstName() + " " + newContact.getLastName() + " | " + newContact.getPhoneNumber() + System.lineSeparator();
+        // Write to contacts.txt
         Files.writeString(contactsPath, formattedContact, StandardOpenOption.APPEND);
 
         // TODO: Add functionality to check for duplicate contact
 
-
+        // Displays menu
         menu();
     }
 

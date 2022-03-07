@@ -13,9 +13,8 @@ public class Input {
     // USER INPUT AS A INT BETWEEN A MAX AND MIN
     public static int getInt(int min, int max) {
         int selected;
-
         try {
-            selected = Integer.parseInt(sc.nextLine());
+            selected = sc.nextInt();
         } catch (NumberFormatException e) {
             System.out.println("Input was not an integer.");
             return getInt(min, max);
@@ -29,16 +28,18 @@ public class Input {
     }
 
     // USER INPUT AS A PHONE NUMBER
+    // Was having issues with scanner, maybe try using getString() for enteredNumber...
     public static String getPhoneNumber() {
         int enteredNumber = 0;
         try {
             // By parsing the user input as an integer, I can verify if only numbers were entered
-            enteredNumber = Integer.parseInt(sc.nextLine());
+            enteredNumber = Integer.parseInt(sc.next());
         } catch (NumberFormatException e) {
             System.out.println("Error: Enter only numbers.");
             getPhoneNumber();
         }
         // Convert phone number to string
         return Integer.toString(enteredNumber);
+        // TODO: Format number with dashes
     }
 }
