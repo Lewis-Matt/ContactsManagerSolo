@@ -45,7 +45,10 @@ public class Main {
     public static void viewContacts() throws IOException {
         // Read contacts.txt and put in temporary contact list
         List<String> contactList = Files.readAllLines(contactsPath);
-
+        // Loop through each element (lines of text) of contactList
+        for (int i = 0; i < contactList.size(); i++) {
+            System.out.printf("%s%n",contactList.get(i));
+        }
 
         menu();
     }
