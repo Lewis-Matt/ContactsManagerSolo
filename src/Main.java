@@ -2,13 +2,17 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.Arrays;
 import java.util.List;
 
-import static util.Input.getInt;
+import static java.nio.file.Files.write;
+import static util.Input.*;
 
 public class Main {
     // Path to contacts.txt
     static Path contactsPath = Paths.get("data", "contacts.txt");
+
     // TODO SHOW MENU TO USER *************************************
     public static void menu() throws IOException {
         // Menu options
@@ -47,14 +51,31 @@ public class Main {
         List<String> contactList = Files.readAllLines(contactsPath);
         // Loop through each element (lines of text) of contactList
         for (int i = 0; i < contactList.size(); i++) {
-            System.out.printf("%s%n",contactList.get(i));
+            // Prints each line to console
+            System.out.printf("%s%n", contactList.get(i));
         }
-
+        System.out.println("----- END OF LIST -----");
+        // Displays menu
         menu();
     }
 
     // TODO ADD CONTACT *************************************
     public static void addContact() throws IOException {
+        System.out.println("Enter first name: ");
+        String firstName = getString();
+        System.out.println("Enter last name: ");
+        String lastName = getString();
+        System.out.println("Enter phone number: ");
+        String phoneNumber = getPhoneNumber();
+
+        // Create a new Contact from user input
+        Contact newContact = new Contact(firstName, lastName, phoneNumber);
+        // Format newContact
+        String formattedContact = newContact.getFirstName() + " " + newContact.getLastName() + " | " + newContact.getPhoneNumber() + System.lineSeparator();
+        Files.writeString(contactsPath, formattedContact, StandardOpenOption.APPEND);
+
+        // TODO: Add functionality to check for duplicate contact
+
 
         menu();
     }
