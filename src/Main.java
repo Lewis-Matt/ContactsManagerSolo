@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.List;
+
 import static java.nio.file.Files.write;
 import static util.Input.*;
 
@@ -48,12 +49,14 @@ public class Main {
     public static void viewContacts() throws IOException {
         // Read contacts.txt and put in temporary contact list
         List<String> contactList = Files.readAllLines(contactsPath);
+
         // Loop through each element (lines of text) of contactList
         for (int i = 0; i < contactList.size(); i++) {
             // Prints each line to console
             System.out.printf("%s%n", contactList.get(i));
         }
         System.out.println("----- END OF LIST -----");
+
         // Displays menu
         menu();
     }
@@ -71,8 +74,11 @@ public class Main {
         Contact newContact = new Contact(firstName, lastName, phoneNumber);
         // Format newContact
         String formattedContact = newContact.getFirstName() + " " + newContact.getLastName() + " | " + newContact.getPhoneNumber() + System.lineSeparator();
+
         // Write to contacts.txt
         Files.writeString(contactsPath, formattedContact, StandardOpenOption.APPEND);
+        System.out.println("** CONTACT ADDED **");
+        System.out.println("------------------");
 
         // TODO: Add functionality to check for duplicate contact
 
@@ -82,7 +88,30 @@ public class Main {
 
     // TODO SEARCH CONTACTS *************************************
     public static void searchContacts() throws IOException {
+        System.out.println("Search by name: ");
+        String searchQuery = getString();
+        boolean exists = false;
 
+        // Read contacts.txt and put in temporary contact list
+        // TODO: This does not let me search for contacts added in the same session!
+        List<String> contactList = Files.readAllLines(contactsPath);
+
+        // Loop through each element (lines of text) of contactList
+        for (String contact : contactList) {
+            // Normalize the searchQuery and entries in contact list
+            // Note: wasn't working until I added extra parenthesis
+            if ((contact.toLowerCase()).contains((searchQuery.toLowerCase()))) {
+                System.out.println(contact);
+                exists = true;
+            }
+            if (!exists) {
+                System.out.println("** CONTACT NOT FOUND **");
+                System.out.println("------------------");
+                break;
+            }
+        }
+
+        // Displays menu
         menu();
     }
 
