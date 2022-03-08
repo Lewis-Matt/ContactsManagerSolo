@@ -9,6 +9,7 @@ Command Line Application that mimics a rolodex™
 - Separating reusable methods into a new class
 - Everything File IO throws IOException - have to add to every method signature
 - All methods within Main set to static, as a instance of the class will never be created (main method is within the Main class)
+
 ### Issues
 - getPhoneNumber() will throw the exception randomly (even if Integers were entered correctly)
 - Finish bonus TODO blocks
