@@ -1,7 +1,6 @@
 Name | Phone number
 --------------------
-Jack Blank | 1231231234
-Jane Doe | 2342342345
-Sam Space | 3453453456
 Ben Dover | 8675309
 Matt Lewis | 4565483
+Jack Black | 1234567890
+Mr Rogers | 1112223333
