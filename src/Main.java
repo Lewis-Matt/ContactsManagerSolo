@@ -6,7 +6,6 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import static java.nio.file.Files.write;
 import static util.Input.*;
 
@@ -26,7 +25,7 @@ public class Main {
 
         // Store user choice
         int selectedOption = getInt(1, 5);
-        // Cases 1 - 5
+        // Cases 1 - 5 -
         switch (selectedOption) {
             case 1:
                 viewContacts();
@@ -46,17 +45,20 @@ public class Main {
         }
     }
 
+    // Not sure if these methods should be in a separate class?
     // TODO VIEW CONTACTS *************************************
     public static void viewContacts() throws IOException {
         // Read contacts.txt and put in temporary contact list
         List<String> contactList = Files.readAllLines(contactsPath);
 
         // Loop through each element (lines of text) of contactList
-        for (int i = 0; i < contactList.size(); i++) {
-            // Prints each line to console
-            System.out.printf("%s%n", contactList.get(i));
+        for (String line : contactList) {
+            // Prints each line/contact to console
+            System.out.printf("%s%n", line);
         }
         System.out.println("----- END OF LIST -----");
+
+        // TODO: Format contacts so the spacing is consistent (loop through length of longest sting?)
 
         // Displays menu
         menu();
@@ -71,12 +73,13 @@ public class Main {
         System.out.println("Enter phone number: ");
         String phoneNumber = getPhoneNumber();
 
-        // Create a new Contact from user input
+        // Create a new Contact from user input (not technically needed - could have just formatted the above)
         Contact newContact = new Contact(firstName, lastName, phoneNumber);
         // Format newContact
         String formattedContact = newContact.getFirstName() + " " + newContact.getLastName() + " | " + newContact.getPhoneNumber() + System.lineSeparator();
 
         // Write to contacts.txt
+        // For now, had to manually set up the contacts.txt to have a newline after the last contact, otherwise this appends to the end of the previous contact (on the same line)
         Files.writeString(contactsPath, formattedContact, StandardOpenOption.APPEND);
         System.out.println("CONTACT ADDED");
         System.out.println("------------------");
@@ -101,7 +104,7 @@ public class Main {
         // Loop through each element (line of text) of contactList
         for (String contact : contactList) {
             // Normalize the searchQuery and entries in contact list
-            // Note: wasn't working until I added extra parenthesis
+            // Note: wasn't working until I added parenthesis enclosing entire .toLowerCase methods
             // contains() is looking for the occurrence of a char string
             if ((contact.toLowerCase()).contains((searchQuery.toLowerCase()))) {
                 System.out.println(contact);
@@ -113,6 +116,7 @@ public class Main {
             System.out.println("CONTACT NOT FOUND");
             System.out.println("------------------");
         }
+
         // Displays menu
         menu();
     }
@@ -128,10 +132,11 @@ public class Main {
         List<String> modifiedContactList = new ArrayList<>();
         for (String contact : originalContactList) {
             if (!contact.contains(toDelete)) {
-                // Loop through existing contacts, add everything to the new list (except toDelete) and write the newlist to contacts.txt (replaces/overwrites).
+                // Loop through existing contacts, add everything to the new list (except toDelete)
                 modifiedContactList.add(contact);
             }
         }
+        // Write the new list to contacts.txt (replaces/overwrites).
         Files.write(contactsPath, modifiedContactList);
         System.out.println("CONTACT DELETED");
         System.out.println("------------------");
