@@ -122,7 +122,7 @@ public class Main {
 
     // TODO DELETE CONTACT *************************************
     public static void deleteContact() throws IOException {
-        System.out.println("Enter Last Name of contact to delete: ");
+        System.out.println("Enter First and Last name of contact to delete [First Last]: ");
         String toDelete = getString();
 
         // Read contacts.txt and put in temporary contact list
@@ -135,6 +135,7 @@ public class Main {
                 modifiedContactList.add(contact);
             }
         }
+
         // Write the new list to contacts.txt (replaces/overwrites).
         Files.write(contactsPath, modifiedContactList);
         System.out.println("CONTACT DELETED");
