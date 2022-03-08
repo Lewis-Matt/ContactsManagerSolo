@@ -28,8 +28,10 @@ public class Input {
     }
 
     // USER INPUT AS A PHONE NUMBER
-    // Was having issues with scanner, maybe try using getString() for enteredNumber...
+    // Sporadic issues with scanner,if I enter all numbers it will sometimes throw the error. It will let me re-enter a number, but it will have already stored '0' as the phone number in the text file.
+    // Maybe try using getString() for enteredNumber... Or just get rid of the exception handling...
     public static String getPhoneNumber() {
+        // Java didn't like this uninitialized, even though it is set in the 'try' block
         int enteredNumber = 0;
         try {
             // By parsing the user input as an integer, I can verify if only numbers were entered
