@@ -13,6 +13,7 @@ Command Line Application that mimics a rolodex™
 ### Issues
 - getPhoneNumber() will throw the exception randomly (even if Integers were entered correctly)
 - Finish bonus TODO blocks
+- Delete will delete any contact that has the occurrence of the specified string (from using .contains).
 
 ## Requirements:
 The application should be able to:
