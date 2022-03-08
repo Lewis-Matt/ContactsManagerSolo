@@ -103,13 +103,14 @@ public class Main {
         for (String contact : contactList) {
             // Normalize the searchQuery and entries in contact list
             // Note: wasn't working until I added parenthesis enclosing entire .toLowerCase methods
-            // contains() is looking for the occurrence of a char string
+            // contains() is looking for the occurrence of the sequence of chars
             if ((contact.toLowerCase()).contains((searchQuery.toLowerCase()))) {
                 System.out.println(contact);
                 System.out.println("------------------");
                 exists = true;
-            }
+            } // No 'else' needed, as exists will continue to = false
         }
+        // If it is true that 'exists' is not true:
         if (!exists) {
             System.out.println("CONTACT NOT FOUND");
             System.out.println("------------------");
