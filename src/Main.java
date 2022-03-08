@@ -3,6 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -122,15 +123,18 @@ public class Main {
         String toDelete = getString();
 
         // Read contacts.txt and put in temporary contact list
-        List<String> contactList = Files.readAllLines(contactsPath);
-        for(String contact : contactList) {
+        List<String> originalContactList = Files.readAllLines(contactsPath);
+        // Create a new list to push contacts to
+        List<String> modifiedContactList = new ArrayList<>();
+        for (String contact : originalContactList) {
             if (!contact.contains(toDelete)) {
-                // loop thru contactList, add everything to a new list (except toDelete) and return newList
-
-
-
+                // Loop through existing contacts, add everything to the new list (except toDelete) and write the newlist to contacts.txt (replaces/overwrites).
+                modifiedContactList.add(contact);
             }
         }
+        Files.write(contactsPath, modifiedContactList);
+        System.out.println("CONTACT DELETED");
+        System.out.println("------------------");
         menu();
     }
 
