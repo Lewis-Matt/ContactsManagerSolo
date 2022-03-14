@@ -43,8 +43,7 @@ public class Main {
         }
     }
 
-    // Not sure if these methods should be in a separate class?
-    // TODO VIEW CONTACTS *************************************
+    // TODO: VIEW CONTACTS *************************************
     public static void viewContacts() throws IOException {
         // Read contacts.txt and put in temporary contact list
         List<String> contactList = Files.readAllLines(contactsPath);
@@ -75,7 +74,6 @@ public class Main {
         Contact newContact = new Contact(firstName, lastName, phoneNumber);
         // Format newContact
         String formattedContact = newContact.getFirstName() + " " + newContact.getLastName() + " | " + newContact.getPhoneNumber() + System.lineSeparator();
-
         // Write to contacts.txt
         // For now, had to manually set up the contacts.txt to have a newline after the last contact, otherwise this appends to the end of the previous contact (on the same line)
         Files.writeString(contactsPath, formattedContact, StandardOpenOption.APPEND);
