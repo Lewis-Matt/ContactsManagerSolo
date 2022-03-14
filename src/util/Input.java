@@ -37,7 +37,7 @@ public class Input {
             // By parsing the user input as an integer, I can verify if only numbers were entered
             enteredNumber = Integer.parseInt(sc.next());
         } catch (NumberFormatException e) {
-            System.out.println("Error: Enter only numbers.");
+            System.out.println("Exception: Enter only numbers.");
             getPhoneNumber();
         }
         // Convert phone number to string
